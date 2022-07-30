@@ -7,7 +7,7 @@
 default: &default
   adapter: postgresql
   pool: 5
-  username: postgres
+  username:
   password: nimda
   timeout: 5000
 

@@ -7,7 +7,7 @@ gem 'devise'
 gem "importmap-rails"
 gem "jbuilder"
 gem "puma", "~> 5.0"
-# gem "pg"
+gem 'pg'
 gem "rails", "~> 7.0.3"
 gem 'sass-rails', '>= 6'
 gem "sprockets-rails"
