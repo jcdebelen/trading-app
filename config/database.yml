@@ -43,7 +43,6 @@
 # gem 'pg'
 #
 
-
 development:
   adapter: postgresql
   database: trading-app

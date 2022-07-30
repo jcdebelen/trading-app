@@ -3,27 +3,30 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
-gem "rails", "~> 7.0.3"
-gem "puma", "~> 5.0"
-gem "jbuilder"
-gem "pg"
-gem 'sass-rails', '>= 6'
-# gem 'webpacker', '~> 4.0'
-gem 'turbolinks', '~> 5'
 gem 'devise'
+gem "importmap-rails"
+gem "jbuilder"
+gem "puma", "~> 5.0"
+gem "pg"
+gem "rails", "~> 7.0.3"
+gem 'sass-rails', '>= 6'
+gem "sprockets-rails"
+gem "stimulus-rails"
 gem 'hamlit-rails'
+gem "turbo-rails"
+gem 'turbolinks', '~> 5'
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-end
-
-group :development do
   gem "web-console"
   gem 'listen', '~> 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :development do
+  gem "web-console"
 end
 
 group :test do
