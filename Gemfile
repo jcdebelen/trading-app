@@ -6,9 +6,9 @@ ruby "3.1.2"
 gem "rails", "~> 7.0.3"
 gem "puma", "~> 5.0"
 gem "jbuilder"
-# gem "pg"
+gem "pg"
 gem 'sass-rails', '>= 6'
-gem 'webpacker', '~> 4.0'
+# gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 gem 'devise'
 gem 'hamlit-rails'
