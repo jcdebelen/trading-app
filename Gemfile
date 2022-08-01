@@ -8,12 +8,12 @@ gem 'devise'
 gem "importmap-rails"
 gem "jbuilder"
 gem "puma", "~> 5.0"
-gem 'pg'
+gem "pg"
 gem "rails", "~> 7.0.3"
 gem 'sass-rails', '>= 6'
 gem "sprockets-rails"
 gem "stimulus-rails"
-gem 'hamlit-rails'
+# gem 'hamlit-rails'
 gem "turbo-rails"
 gem 'turbolinks', '~> 5'
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
@@ -24,10 +24,6 @@ group :development, :test do
   gem 'listen', '~> 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-end
-
-group :development do
-  gem "web-console"
 end
 
 group :test do
