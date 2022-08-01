@@ -15,6 +15,7 @@ class TransactionsTest < ApplicationSystemTestCase
     click_on "New transaction"
 
     fill_in "Amount", with: @transaction.amount
+
     fill_in "Status", with: @transaction.status
     fill_in "Type", with: @transaction.type
     fill_in "User", with: @transaction.user_id
@@ -29,9 +30,11 @@ class TransactionsTest < ApplicationSystemTestCase
     click_on "Edit this transaction", match: :first
 
     fill_in "Amount", with: @transaction.amount
+
     fill_in "Status", with: @transaction.status
     fill_in "Type", with: @transaction.type
     fill_in "User", with: @transaction.user_id
+
     click_on "Update Transaction"
 
     assert_text "Transaction was successfully updated"
