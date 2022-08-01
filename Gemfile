@@ -13,7 +13,7 @@ gem "rails", "~> 7.0.3"
 gem 'sass-rails', '>= 6'
 gem "sprockets-rails"
 gem "stimulus-rails"
-gem 'hamlit-rails'
+# gem 'hamlit-rails'
 gem "turbo-rails"
 gem 'turbolinks', '~> 5'
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
