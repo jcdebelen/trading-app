@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_01_072914) do
     t.integer "user_id"
     t.string "type"
     t.string "status"
-    t.integer "amount"
+    t.integer "amount", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
