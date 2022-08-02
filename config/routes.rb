@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users
+  devise_scope :users do
+    get  'users/admin_new' => 'users#admin_new'
+    post 'users/admin_create' => 'users#admin_create'
+  end
+  resources :users, only: [:index, :show]
   resources :transactions
   resources :stocks
 
