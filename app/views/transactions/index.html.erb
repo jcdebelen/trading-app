@@ -5,6 +5,7 @@ hello <%= current_user.role %>
   There are <%= User.count %> user's in the system
 <% end %>
 <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+
 <p style="color: green"><%= notice %></p>
 
 <h1>Transactions</h1>
