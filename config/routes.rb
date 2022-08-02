@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :stocks
   devise_for :users
-
+  resources :users
   resources :transactions
+  resources :stocks
 
   root 'transactions#index'
 
