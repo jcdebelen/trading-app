@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
   before_action :authenticate_user!
+  before_action :set_user, only: %i[ show edit update destroy ]
+
   def index
-    @users = User.all
+    @users = User.where(role: "trader")
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def admin_new
@@ -21,6 +22,7 @@ class UsersController < ApplicationController
         format.html { redirect_to users_path, notice: "User was successfully created."}
       else
         format.html { render :admin_new, status: :unprocessable_entity }
+        flash[:notice] = 'error check your input'
       end
     end
   end
@@ -28,10 +30,33 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def update
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to users_path, notice: "User was successfully updated." }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        flash[:error] = 'error check yout input'
+      end
+    end
+  end
+
   def destroy
+    respond_to do |format|
+      if @user.destroy
+        format.html { redirect_to users_path, notice: "User was successfully deleted" }
+      end
+    end
+  end
+
+  def admin
   end
 
   private
+  
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   def user_params
     params.require(:user).permit(:email, :password)
