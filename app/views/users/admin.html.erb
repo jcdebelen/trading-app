@@ -1,0 +1,4 @@
+HELLO ADMIN
+there are currently <%= User.count - 1 %> users in the system
+<%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+<%= link_to 'view users', users_path %>
