@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
+gem 'pry', '~> 0.13.1'
 gem 'cancancan'
 gem 'devise'
 gem "importmap-rails"
