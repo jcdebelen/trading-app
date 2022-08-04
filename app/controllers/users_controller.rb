@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
 
   def index
-    @users = User.where(role: "trader")
+      @users = User.where(approved: false)
   end
 
   def show
