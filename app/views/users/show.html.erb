@@ -1,4 +1,5 @@
 USER ID: <%= @user.id %> <br>
 USER EMAIL: <%= @user.email %> <br>
+Approved: <%= @user.approved? %> <br>
 <%= button_to "delete", user_path, method: :delete%>
 <%= link_to 'edit', edit_user_path(@user.id) %>
