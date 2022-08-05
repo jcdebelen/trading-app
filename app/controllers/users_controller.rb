@@ -33,6 +33,9 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
+        if @user.approved?
+          UserMailer.user_message_approved(@user.email).deliver
+        end
         format.html { redirect_to users_path, notice: "User was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -59,7 +62,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:email, :password, :approved)
   end
 
 end

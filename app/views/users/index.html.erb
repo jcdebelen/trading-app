@@ -1,9 +1,15 @@
 <%= link_to 'create user', users_admin_new_path%>
-<br>
-<% @users.each do |user| %>
-  <%= user.email %>
-  <%= user.approved %>
-  <%= link_to 'show user', user_path(user.id) %>
+<% if @users.length === 0 %>
   <br>
+  NOTHING TO APPROVED
+  <br>
+<% else %>
+  <br>
+  <% @users.each do |user| %>
+    <%= user.email %>
+    <%= user.approved %>
+    <%= link_to 'show user', user_path(user.id) %>
+    <br>
+  <% end %>
 <% end %>
 <%= link_to 'admin dashboard', users_admin_path %>
