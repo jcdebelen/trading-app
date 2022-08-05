@@ -1,8 +1,10 @@
 <%= form_with model: @user do |form| %>
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-    <br>
-    <%= form.submit %>
+  <%= form.label :email %>
+  <%= form.text_field :email %>
+  <%= form.label :approved %>
+  <%= form.select :approved, [[true, "true"], [false, "false"]]%>
+  <br>
+  <%= form.submit %>
 <% end %>
 <br>
 <%= link_to 'go back', users_path%>

@@ -34,6 +34,7 @@ class User < ApplicationRecord
     recoverable
   end
 
+  #MAILERS
   def send_admin_mail
     AdminMailer.new_user_waiting_for_approval(email).deliver
   end
@@ -42,4 +43,5 @@ class User < ApplicationRecord
     UserMailer.user_message_approval(email).deliver
   end
   
+
 end
