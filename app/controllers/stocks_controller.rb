@@ -1,13 +1,23 @@
 class StocksController < ApplicationController
+  load_and_authorize_resource
   before_action :set_stock, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /stocks or /stocks.json
   def index
-    @stocks = Stock.all
+    # binding.pry
+    # @stocks = Stock.all
+    require 'iex-ruby-client'
+    @client ||= IEX::Api::Client.new
+    @symbols ||= @client.stock_market_list(:mostactive)
+    @symbols.map do |sym|
+      @client.quote(sym.symbol)
+    end
   end
 
   # GET /stocks/1 or /stocks/1.json
   def show
+    #when buy should redirect to dashboard with recent buyed item
   end
 
   # GET /stocks/new
@@ -21,17 +31,17 @@ class StocksController < ApplicationController
 
   # POST /stocks or /stocks.json
   def create
-    @stock = Stock.new(stock_params)
+    # @stock = Stock.new(stock_params)
 
-    respond_to do |format|
-      if @stock.save
-        format.html { redirect_to stock_url(@stock), notice: "Stock was successfully created." }
-        format.json { render :show, status: :created, location: @stock }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @stock.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @stock.save
+    #     format.html { redirect_to stock_url(@stock), notice: "Stock was successfully created." }
+    #     format.json { render :show, status: :created, location: @stock }
+    #   else
+    #     format.html { render :new, status: :unprocessable_entity }
+    #     format.json { render json: @stock.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /stocks/1 or /stocks/1.json
@@ -65,6 +75,6 @@ class StocksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def stock_params
-      params.require(:stock).permit(:name, :price, :transaction_id)
+      params.require(:stock).permit(:name, :price, :sym)
     end
 end

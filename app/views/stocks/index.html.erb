@@ -1,14 +1,10 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Stocks</h1>
-
-<div id="stocks">
-  <% @stocks.each do |stock| %>
-    <%= render stock %>
-    <p>
-      <%= link_to "Show this stock", stock %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New stock", new_stock_path %>
+TRENDING STOCKS
+<br>
+<br>
+<% @symbols.each do |sym| %>
+  Company Name: <%= sym.company_name %> <br>
+  Symbol: <%= sym.symbol %> <br>
+  Price: $<%= sym.iex_realtime_price %><br>
+  <br>
+  <br>
+<% end %>
