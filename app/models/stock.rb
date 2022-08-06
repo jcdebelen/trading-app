@@ -3,5 +3,5 @@ class Stock < ApplicationRecord
     validates :name, presence: true
     validates :price, presence: true
 
-    delegate :user, to: :transaction
+    belongs_to :user
 end

@@ -5,6 +5,7 @@ ruby "3.1.2"
 
 gem 'pry', '~> 0.13.1'
 gem 'cancancan'
+gem 'iex-ruby-client'
 gem 'devise'
 gem "importmap-rails"
 gem "jbuilder"

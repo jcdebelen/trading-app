@@ -9,7 +9,7 @@ class Ability
       # can :read, User, public: true
 
       return unless user.present?
-      can :read, Transaction
+      can :read, Stock, user: user
 
       return unless user.admin?
       can :manage, :all
