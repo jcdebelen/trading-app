@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   get 'users/admin' => 'users#admin'
 
   resources :users, only: [:index, :show, :update, :destroy, :edit]
-  resources :stocks
 
   root 'pages#home'
 
