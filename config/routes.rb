@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'pages/home'
   devise_for :users
   devise_scope :users do
     get  'users/admin_new' => 'users#admin_new'
@@ -9,6 +8,7 @@ Rails.application.routes.draw do
   get 'users/admin' => 'users#admin'
 
   resources :users, only: [:index, :show, :update, :destroy, :edit]
+  resources :stocks, param: :sym
 
   root 'pages#home'
 

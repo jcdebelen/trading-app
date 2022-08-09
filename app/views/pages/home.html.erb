@@ -1,9 +1,5 @@
 DASHBOARD
 <br>
+<%= link_to 'view stocks', stocks_path %>
 <br>
-<% @stocks.each do |symbol| %>
-  <%= symbol.id %><br>
-  <%= symbol.sym %><br>
-  <br>
-<% end %>
 <%= button_to "Sign out", destroy_user_session_path, method: :delete %>

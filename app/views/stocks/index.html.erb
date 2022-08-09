@@ -1,0 +1,7 @@
+<% @stocks.each do |symbol| %>
+  <%= symbol.id %><br>
+  <%= symbol.sym %><br>
+  <%= link_to 'view stock', stock_path(symbol.sym) %>
+  <br>
+  <br>
+<% end %>
