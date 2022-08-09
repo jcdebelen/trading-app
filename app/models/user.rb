@@ -7,6 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :stocks, dependent: :destroy
+  has_one :portfolio, dependent: :destroy
   
   enum role: [:trader, :admin]
   after_initialize :set_default_role if :new_record?

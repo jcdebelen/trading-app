@@ -9,8 +9,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show, :update, :destroy, :edit]
   resources :stocks, param: :sym
+  resources :portfolio
 
-  root 'pages#home'
+  root 'portfolios#index'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

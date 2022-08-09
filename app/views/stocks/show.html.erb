@@ -1,2 +1,4 @@
-<%= @stock.sym %>
-<%= @quote %>
+Symbol: <%= @quote.symbol %><br>
+Company name: <%= @quote.company_name %><br>
+Price: $<%= @quote.latest_price %><br>
+<%= link_to 'buy', root_path %>
