@@ -5,6 +5,7 @@ class CreateTransactions < ActiveRecord::Migration[7.0]
       t.integer :stock_id
       t.integer :stock_price
       t.integer :stock_quantity
+      t.integer :user_id
 
       t.timestamps
     end

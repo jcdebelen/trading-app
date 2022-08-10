@@ -5,13 +5,13 @@ Rails.application.routes.draw do
     post 'users/admin_create' => 'users#admin_create'
   end
 
+  get 'stock/:id/buy' => 'stocks#buy_stock', as: 'stock_buy'
   get 'users/admin' => 'users#admin'
+  get 'stocks' => 'stocks#index'
 
-  resources :users, only: [:index, :show, :update, :destroy, :edit]
-  resources :stocks, param: :sym
-  resources :portfolio
 
-  root 'portfolios#index'
+  resources :transactions, only: [:create, :destroy]
+  root 'pages#home'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
