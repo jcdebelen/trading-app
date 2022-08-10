@@ -1,9 +1,4 @@
-DASHBOARD
+HELLO <%= current_user.email %>
 <br>
 <br>
-<% @stocks.each do |symbol| %>
-  <%= symbol.id %><br>
-  <%= symbol.sym %><br>
-  <br>
-<% end %>
-<%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+<%= link_to 'view stocks', stocks_path %>

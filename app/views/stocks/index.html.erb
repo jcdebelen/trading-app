@@ -1,0 +1,8 @@
+<% @stocks.each do |symbol| %>
+  <%= symbol.id %><br>
+  <%= symbol.sym %><br>
+  <% quote = @client.quote(symbol.sym) %>
+  <%= link_to 'buy', stock_buy_path(symbol.id) %>
+  <br>
+  <br>
+<% end %>

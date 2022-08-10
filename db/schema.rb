@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_08_133111) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_09_115349) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_08_133111) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sym"], name: "index_stocks_on_sym", unique: true
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.string "action"
+    t.integer "stock_id"
+    t.integer "stock_price"
+    t.integer "stock_quantity"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
