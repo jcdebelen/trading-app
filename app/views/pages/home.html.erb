@@ -1,4 +1,15 @@
 HELLO <%= current_user.email %>
 <br>
 <br>
+<% @transactions.each do |transaction| %>
+  <%= transaction.ticker %><br>
+  <%= transaction.symbol %><br>
+  <%= transaction.company_name %><br>
+  <%= transaction.stock_price %><br>
+  <%= transaction.stock_quantity %><br>
+  <%= button_to "sell", transaction_path(transaction.id), method: :delete, form:{ data:{ turbo_confirm: 'Are you sure?' } } %>
+  <br>
+<% end %>
+<br>
+<%= button_to 'signout', destroy_user_session_path, method: :delete %>
 <%= link_to 'view stocks', stocks_path %>

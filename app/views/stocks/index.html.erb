@@ -2,7 +2,15 @@
   <%= symbol.id %><br>
   <%= symbol.sym %><br>
   <% quote = @client.quote(symbol.sym) %>
-  <%= link_to 'buy', stock_buy_path(symbol.id) %>
+  <%= link_to 'buy', transactions_path(
+  ticker: "buy", 
+  symbol: symbol.sym,
+  company_name: quote.company_name,
+  stock_id: symbol.id, 
+  stock_price: quote.latest_price, 
+  user_id: current_user.id 
+  ), 
+  data: { "turbo-method": :post } %>
   <br>
   <br>
 <% end %>
