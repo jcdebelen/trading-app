@@ -1,0 +1,10 @@
+<%= form_with url: "/transactions", method: :post, data: {turbo: false} do |form| %>
+  <%= form.hidden_field :ticker, value: "buy" %>
+  <%= form.hidden_field :symbol, value: quote.symbol %>
+  <%= form.hidden_field :company_name, value: quote.company_name %>
+  <%= form.hidden_field :stock_id, value: symbol_id %>
+  <%= form.hidden_field :stock_price, value: quote.latest_price %>
+  <%= form.hidden_field :user_id, value: current_user.id  %>
+  <%= form.number_field :stock_quantity, in: 1..10 %>
+  <%= form.submit "buy" %>
+<% end %>

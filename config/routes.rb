@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   # get 'stock/:id/buy' => 'stocks#buy_stock', as: 'stock_buy'
   get 'users/admin' => 'users#admin'
   get 'stocks' => 'stocks#index'
+  get 'transactions/buy' => 'transactions#buy'
+  get 'transactions/:id/sell' => 'transactions#sell', as: "transactions_sell"
   resources :transactions, only: [:create, :destroy]
   root 'pages#home'
 

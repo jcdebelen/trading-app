@@ -7,7 +7,8 @@ HELLO <%= current_user.email %>
   <%= transaction.company_name %><br>
   <%= transaction.stock_price %><br>
   <%= transaction.stock_quantity %><br>
-  <%= button_to "sell", transaction_path(transaction.id), method: :delete, form:{ data:{ turbo_confirm: 'Are you sure?' } } %>
+  <%= link_to "sell", transactions_sell_path(transaction.id) %>
+  <br>
   <br>
 <% end %>
 <br>
