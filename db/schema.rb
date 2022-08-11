@@ -22,10 +22,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_115349) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.string "action"
+    t.string "ticker"
+    t.string "symbol"
+    t.string "company_name"
     t.integer "stock_id"
     t.integer "stock_price"
-    t.integer "stock_quantity"
+    t.integer "stock_quantity", default: 0
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
