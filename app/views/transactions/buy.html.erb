@@ -1,0 +1,4 @@
+Buying [<%= @quote.symbol %>]<br>
+Price $<%= @quote.latest_price %><br>
+<br>
+<%= render 'form', quote: @quote, symbol_id: @symbol_id %>

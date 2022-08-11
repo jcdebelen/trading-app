@@ -1,17 +1,9 @@
 <% @stocks.each do |symbol| %>
-  <%= symbol.sym %><br>
   <% quote = @client.quote(symbol.sym) %>
+  Symbol: <%= symbol.sym %><br>
+  Company name: <%= quote.company_name %><br>
   $<%= quote.latest_price %><br>
-  <%= form_with url: "/transactions", method: :post, data: {turbo: false} do |form| %>
-    <%= form.hidden_field :ticker, value: "buy" %>
-    <%= form.hidden_field :symbol, value: symbol.sym %>
-    <%= form.hidden_field :company_name, value: quote.company_name %>
-    <%= form.hidden_field :stock_id, value: symbol.id %>
-    <%= form.hidden_field :stock_price, value: quote.latest_price %>
-    <%= form.hidden_field :user_id, value: current_user.id  %>
-    <%= form.number_field :stock_quantity, in: 1..10 %>
-    <%= form.submit "buy" %>
-  <% end %>
+  <%= link_to 'buy', transactions_buy_path(TS: symbol.sym, TID: symbol.id) %>
   <br>
   <br>
 <% end %>
