@@ -3,7 +3,7 @@
   Symbol: <%= symbol.sym %><br>
   Company name: <%= quote.company_name %><br>
   $<%= quote.latest_price %><br>
-  <%= link_to 'buy', transactions_buy_path(TS: symbol.sym, TID: symbol.id) %>
+  <%= link_to 'buy', transactions_buy_path(SS: symbol.sym, SID: symbol.id) %>
   <br>
   <br>
 <% end %>
