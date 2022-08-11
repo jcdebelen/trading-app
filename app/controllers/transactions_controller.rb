@@ -4,7 +4,12 @@ class TransactionsController < ApplicationController
 
   def buy
     @quote = @client.quote(params[:SS])
-    @stock = current_user.transactions.find_by(stock_id: (params[:SID]).to_i )
+    stock = current_user.transactions.find_by(stock_id: (params[:SID]).to_i)
+    if stock.present?
+      @stock = stock
+    else
+      @stock_id = params[:SID]
+    end
   end
 
   def sell
@@ -13,7 +18,7 @@ class TransactionsController < ApplicationController
 
   def create
     respond_to do |format|
-      if current_user.balance < (params[:stock_price]).to_i
+      if current_user.balance < (params[:stock_price]).to_i * (params[:stock_quantity]).to_i
         format.html { redirect_to root_path, notice: "Insufficient balance, add more!" }
       else
         @find_duplicate = current_user.transactions.find_by(symbol: params[:symbol])
