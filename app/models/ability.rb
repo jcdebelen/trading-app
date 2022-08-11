@@ -10,7 +10,7 @@ class Ability
 
       return unless user.present?
       can :manage, Transaction, user: user
-      can :manage, Stock
+      can :read, Stock
 
       return unless user.admin?
       can :manage, :all

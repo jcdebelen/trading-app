@@ -1,9 +1,10 @@
 class TransactionsController < ApplicationController
   before_action :get_iex
+  load_and_authorize_resource
 
   def buy
-    @quote = @client.quote(params[:TS])
-    @symbol_id = params[:TID]
+    @quote = @client.quote(params[:SS])
+    @stock = current_user.transactions.find_by(stock_id: (params[:SID]).to_i )
   end
 
   def sell

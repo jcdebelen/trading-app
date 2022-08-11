@@ -1,4 +1,7 @@
 Buying [<%= @quote.symbol %>]<br>
 Price $<%= @quote.latest_price %><br>
+<% if @stock.stock_quantity > 0 %>
+  Stock: <%= @stock.stock_quantity %><br>
+<% end %>
 <br>
-<%= render 'form', quote: @quote, symbol_id: @symbol_id %>
+<%= render 'form', quote: @quote, symbol_id: @stock.stock_id %>
