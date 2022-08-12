@@ -40,3 +40,5 @@ group :test do
 end
 
 gem "tailwindcss-rails", "~> 2.0"
+
+gem "cable_ready", "~> 4.5"

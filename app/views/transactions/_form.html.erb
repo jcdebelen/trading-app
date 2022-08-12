@@ -1,5 +1,6 @@
 <%= form_with url: "/transactions", method: :post, data: {turbo: false} do |form| %>
   <%= form.hidden_field :ticker, value: "buy" %>
+  <%= form.hidden_field :status, value: "pending" %>
   <%= form.hidden_field :symbol, value: quote.symbol %>
   <%= form.hidden_field :company_name, value: quote.company_name %>
   <%= form.hidden_field :stock_id, value: symbol_id %>

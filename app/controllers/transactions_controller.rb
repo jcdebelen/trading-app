@@ -27,12 +27,14 @@ class TransactionsController < ApplicationController
         current_user.balance -= sum
         current_user.save
         if @find_duplicate.present?
+          @find_duplicate.status = 'pending'
           @find_duplicate.stock_quantity += params[:stock_quantity].to_i
           @find_duplicate.save
+          format.html { redirect_to root_path(TR_ID: @find_duplicate.id), notice: "You've bought #{params[:stock_quantity]} #{params[:symbol]} -$#{sum}"}
         else
           @transaction = Transaction.create(transaction_params)
+          format.html { redirect_to root_path(TR_ID: @transaction.id), notice: "You've bought #{params[:stock_quantity]} #{params[:symbol]} -$#{sum}"}
         end
-        format.html { redirect_to root_path, notice: "You've bought #{params[:stock_quantity]} #{params[:symbol]} -$#{(params[:stock_price]).to_i * (params[:stock_quantity]).to_i}"}
       end
     end
   end
@@ -54,7 +56,7 @@ class TransactionsController < ApplicationController
 
   private
   def transaction_params
-    params.permit(:ticker, :symbol, :company_name, :stock_id, :stock_price, :stock_quantity, :user_id)
+    params.permit(:status, :ticker, :symbol, :company_name, :stock_id, :stock_price, :stock_quantity, :user_id)
   end
 
   def get_iex
