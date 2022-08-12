@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # get 'stock/:id/buy' => 'stocks#buy_stock', as: 'stock_buy'
   get 'users/admin' => 'users#admin'
   get 'stocks' => 'stocks#index'
-  resources :users, only: [:index, :show, :edit, :destroy]
+  resources :users, only: [:index, :show, :update, :destroy, :edit]
   # transactions
   get 'transactions/buy' => 'transactions#buy'
   get 'transactions/:id/sell' => 'transactions#sell', as: "transactions_sell"

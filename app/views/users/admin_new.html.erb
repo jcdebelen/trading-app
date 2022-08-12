@@ -1,13 +1,17 @@
 <%= form_with model: @user, :url => '/users/admin_create' do |form| %>
-
-    <%= form.label :email%>
-    <%= form.text_field :email %>
-    <br>
-    <%= form.label :password %>
-    <%= form.text_field :password %>
-    <br>
-    <%= form.submit %>
-
+  <%= form.label :email%>
+  <%= form.text_field :email %>
+  <%= @user.errors.full_messages[0] %>
+  <br>
+  <%= form.label :password %>
+  <%= form.password_field :password %>
+  <%= @user.errors.full_messages[1] %>
+  <br>
+  <%= form.label :password_confirmation %>
+  <%= form.password_field :password_confirmation %>
+  <%= @user.errors.full_messages[2] %>
+  <br>
+  <%= form.submit %>
 <% end %>
 <br>
 <%= link_to 'go back', users_path%>

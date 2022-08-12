@@ -38,3 +38,5 @@ group :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
 end
+
+gem "tailwindcss-rails", "~> 2.0"

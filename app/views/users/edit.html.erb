@@ -1,5 +1,6 @@
 <%= form_with model: @user do |form| %>
   <%= form.label :email %>
+  <%= @user.errors.full_messages[0] %>
   <%= form.text_field :email %>
   <%= form.label :approved %>
   <%= form.select :approved, [[true, "true"], [false, "false"]]%>

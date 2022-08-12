@@ -10,8 +10,10 @@ Approved: <%= @user.approved? %> <br>
   <br>
   <br>
   <% @user_history.each do |history| %>
-    STATUS: <%= history.status %><br>
-    STOCK SYMBOL: <%= history.symbol %><br>
+    ACTION: <%= history.status %><br>
+    <% if !history.symbol.nil? %>
+      STOCK SYMBOL: <%= history.symbol %><br>
+    <% end %>
     AMOUNT: $<%= history.amount %><br>
     DATE: <%= history.created_at %><br>
     <br>
