@@ -20,13 +20,11 @@ class UsersController < ApplicationController
 
   def admin_create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to users_path, notice: "User was successfully created."}
       else
-        format.html { render :admin_new, status: :unprocessable_entity }
-        flash[:notice] = 'error check your input'
+        format.html { render :admin_new, status: :unprocessable_entity}
       end
     end
   end
@@ -35,6 +33,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id])
     respond_to do |format|
       if @user.update(user_params)
         if @user.approved?
@@ -43,7 +42,6 @@ class UsersController < ApplicationController
         format.html { redirect_to users_path, notice: "User was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        flash[:error] = 'error check yout input'
       end
     end
   end
@@ -66,7 +64,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :approved)
+    params.require(:user).permit(:email, :password, :password_confirmation, :approved)
   end
 
 end
