@@ -3,10 +3,13 @@ BALANCE: $<%= current_user.balance %><br>
 <%= link_to 'deposit', user_deposit_path %>
 <%= link_to 'withdraw', user_withdraw_path %>
 <br>
+<%= link_to 'Transaction History', user_history_path %>
+<br>
 STOCKS: <%= @transactions.length %>
 <br>
 <br>
 <% @transactions.each do |transaction| %>
+  Status: <%= transaction.status %><br>
   Symbol: <%= transaction.symbol %><br>
   Company name: <%= transaction.company_name %><br>
   Price: $<%= transaction.stock_price %><br>

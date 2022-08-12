@@ -1,5 +1,21 @@
+<%= link_to 'go back', users_path %><br>
 USER ID: <%= @user.id %> <br>
 USER EMAIL: <%= @user.email %> <br>
 Approved: <%= @user.approved? %> <br>
-<%= button_to "delete", user_path, method: :delete%>
 <%= link_to 'edit', edit_user_path(@user.id) %>
+<%= button_to "delete", user_path, method: :delete%>
+<br>
+<% if @user_history.present? %>
+  TRANSACTIONS
+  <br>
+  <br>
+  <% @user_history.each do |history| %>
+    STATUS: <%= history.status %><br>
+    STOCK SYMBOL: <%= history.symbol %><br>
+    AMOUNT: $<%= history.amount %><br>
+    DATE: <%= history.created_at %><br>
+    <br>
+  <% end %>
+<% else %>
+  NO TRANSACTIONS YET
+<% end %>

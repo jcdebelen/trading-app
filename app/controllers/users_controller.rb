@@ -3,10 +3,15 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
 
   def index
-      @users = User.where(approved: false)
+      @users_not_approved = User.where(approved: false)
+      @users_approved = User.where(approved: true, role: "trader")
   end
 
   def show
+    check_if_exist = UserHistory.where(user_id: params[:id]).order(created_at: :desc)
+    if check_if_exist.present?
+      @user_history = check_if_exist
+    end
   end
 
   def admin_new

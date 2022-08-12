@@ -17,12 +17,14 @@ class TransactionsController < ApplicationController
   end
 
   def create
+    sum = (params[:stock_price]).to_i * (params[:stock_quantity]).to_i
     respond_to do |format|
-      if current_user.balance < (params[:stock_price]).to_i * (params[:stock_quantity]).to_i
+      if current_user.balance < sum
         format.html { redirect_to root_path, notice: "Insufficient balance, add more!" }
       else
+        current_user.user_histories.create(status: params[:ticker], symbol: params[:symbol], amount: sum)
         @find_duplicate = current_user.transactions.find_by(symbol: params[:symbol])
-        current_user.balance -= (params[:stock_price]).to_i * (params[:stock_quantity]).to_i
+        current_user.balance -= sum
         current_user.save
         if @find_duplicate.present?
           @find_duplicate.stock_quantity += params[:stock_quantity].to_i
@@ -36,13 +38,16 @@ class TransactionsController < ApplicationController
   end
 
   def destroy
+    t = params[:transaction]
+    sum = (@transaction.stock_price) * (t[:stock_quantity]).to_i
     @transaction = current_user.transactions.find(params[:id])
+    current_user.user_histories.create(status: t[:ticker], symbol: t[:symbol], amount: sum)
     respond_to do |format|
-      @transaction.stock_quantity -= (params[:transaction][:stock_quantity]).to_i
-      current_user.balance += (@transaction.stock_price) * (params[:transaction][:stock_quantity]).to_i
+      @transaction.stock_quantity -= (t[:stock_quantity]).to_i
+      current_user.balance += sum
       current_user.save
       @transaction.save
-      format.html { redirect_to root_path, notice: "Successfully sell #{params[:transaction][:stock_quantity]} #{@transaction.symbol} stock +$#{(@transaction.stock_price) * (params[:transaction][:stock_quantity]).to_i}" }
+      format.html { redirect_to root_path, notice: "Successfully sell #{t[:stock_quantity]} #{@transaction.symbol} stock +$#{sum}" }
     end
     
   end
