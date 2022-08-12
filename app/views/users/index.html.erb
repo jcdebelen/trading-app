@@ -1,15 +1,25 @@
-<%= link_to 'create user', users_admin_new_path%>
-<% if @users.length === 0 %>
+<%= link_to 'create user', users_admin_new_path%><br>
+NEEDS UPROVAL<br>
+<% if @users_not_approved.length === 0 %>
   <br>
   NOTHING TO APPROVED
   <br>
 <% else %>
   <br>
-  <% @users.each do |user| %>
+  <% @users_not_approved.each do |user| %>
     <%= user.email %>
     <%= user.approved %>
     <%= link_to 'show user', user_path(user.id) %>
     <br>
   <% end %>
+<% end %>
+<br>
+<br>
+ALL USERS<br>
+<% @users_approved.each do |user| %>
+  <%= user.email %>
+  <%= user.approved %>
+  <%= link_to 'show user', user_path(user.id) %>
+  <br>
 <% end %>
 <%= link_to 'admin dashboard', users_admin_path %>

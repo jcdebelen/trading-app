@@ -9,4 +9,7 @@ class PagesController < ApplicationController
   def pending
   end
   
+  def history
+    @histories = current_user.user_histories.order(created_at: :desc)
+  end
 end
