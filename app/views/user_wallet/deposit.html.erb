@@ -1,6 +1,6 @@
 DEPOSIT
 <br>
-BALANCE: <%= current_user.balance %>
+BALANCE: $<%= current_user.balance %>
 <br>
 <%= form_with url: '/user_wallet', method: :post, data: {turbo: false} do |form| %>
   <%= form.number_field :deposit, in: 1..10_000 %>

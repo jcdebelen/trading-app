@@ -7,6 +7,7 @@ STOCKS: <%= @transactions.length %>
 <br>
 <br>
 <% @transactions.each do |transaction| %>
+  Status: <%= transaction.status %><br>
   Symbol: <%= transaction.symbol %><br>
   Company name: <%= transaction.company_name %><br>
   Price: $<%= transaction.stock_price %><br>
