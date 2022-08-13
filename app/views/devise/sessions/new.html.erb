@@ -1,26 +1,42 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="absolute w-full h-40 flex flex-col justify-center items-center mt-30">
+<h1 class="absolute italic font-sans text-7xl font-bold font text-center text-orange-500 drop-shadow-xl tracking-tighter">
+Degen<span class="text-gray-500 z-10">Exchange</span></h1>
+<span class="italic mt-20 text-gray-900 z-10 font-bold">To the moon and beyond</span>
+</div>
+<div class="w-full h-screen flex items-center justify-evenly bg-slate-200">
+  <div class="w-3/12 p-6 h-auto flex flex-col ml-40 mb-20">
+   <%= image_tag "Bitcoin_Monochromatic.png" %>
+    <p class="text-lg font-medium -mt-8">Buy, trade, and hold 1000+ stocks with the world’s most powerful exchange. Trading platform for all the apes.</p>
+    <%= link_to "Sign Up", new_user_registration_path,  class:"text-center self-center items-center mt-2 w-52 h-10 text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-1.5 mr-2 mt-6" %>
   </div>
+  <div class="w-96 h-auto p-2 flex flex-col mr-40">
+    <h2 class="text-2xl font-bold text-gray-600 self-center">Sign in</h2>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => "mb-20"}) do |f| %>
+      <div class="flex-col align-center">
+        <div class="field relative">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", id:"floating_outlined", class: "mt-5 bg-white rounded-lg block px-2.5 pb-2.5 pt-4 w-full text-base text-gray-900 bg-transparent rounded-lg border-1 border-gray-400 appearance-none focus:outline-none focus:ring-0 focus:border-sky-500 peer", placeholder: " "  %>
+            <%= f.label :email, for: "floating_outlined", class:"absolute text-base text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-grat-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4" %>
+        </div>
+
+        <div class="field relative">  
+          <%= f.password_field :password, autocomplete: "current-password", id:"floating_outlined", class: "mt-5 bg-white rounded-lg block px-2.5 pb-2.5 pt-4 w-full text-base text-gray-900 bg-transparent rounded-lg border-1 border-gray-400 appearance-none focus:outline-none focus:ring-0 focus:border-sky-500 peer", placeholder: " "  %>
+          <%= f.label :password, for: "floating_outlined", class:"absolute text-base text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4" %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="flex-row items-center justify-center my-2 field">
+            <%= f.check_box :remember_me, class:"text-blue-600 bg-gray-100 rounded-lg border-gray-300 focus:ring-blue-500" %>
+            <%= f.label :remember_me, class:"text-sm" %>
+          </div>
+        <% end %>
+
+        <div class="flex flex-col items-center justify-center">
+          <%= f.submit "Log in", class: "mt-2 w-3/5 h-10 text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-1.5 mr-2 mb-2" %>
+          <%= link_to "Forgot password?", new_user_password_path, method: :delete, class:"text-sm hover:underline" %>
+        </div>
+      </div>
+    <% end %>
   </div>
+</div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
