@@ -1,8 +1,7 @@
 class PagesController < ApplicationController
   def home
     @transactions = current_user.transactions.where("stock_quantity != ?", 0)
-    StatusJob.set(wait: 5.seconds).perform_later(params[:TR_ID])
-
+    @pending_stocks = current_user.transactions.where(status: "pending")
   end
 
   def completed

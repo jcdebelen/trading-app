@@ -7,7 +7,7 @@ Price $<%= @quote.latest_price %><br>
 <% end %>
 <br>
 <% if @stock.present? %>
-  <%= render 'form', quote: @quote, symbol_id: @stock.stock_id %>
+  <%= render 'form', quote: @quote %>
 <% else %>
-  <%= render 'form', quote: @quote, symbol_id: @stock_id %>
+  <%= render 'form', quote: @quote %>
 <% end %>
