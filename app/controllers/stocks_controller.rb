@@ -3,7 +3,20 @@ class StocksController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @stocks = Stock.all
+    search = params[:query] 
+    if search.present? && search.match(/[a-zA-Z]/)
+      search = search.upcase
+      begin
+        quote = @client.quote(search)
+      rescue
+        respond_to do |format|
+          format.html { redirect_to stocks_path, alert: 'Symbol not found'}
+        end
+      else
+        @stock = quote
+      end
+    end
+    
   end
 
   def get_iex
