@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
+
   def home
-    @transactions = current_user.transactions.where("stock_quantity != ?", 0)
+    @transactions = current_user.transactions.where("stock_quantity > ?", 0).where(status: "completed")
     @pending_stocks = current_user.transactions.where(status: "pending")
   end
 
