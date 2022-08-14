@@ -12,9 +12,9 @@ gem "jbuilder"
 gem "puma", "~> 5.0"
 gem "pg"
 gem "rails", "~> 7.0.3"
-gem 'sass-rails', '>= 6'
 gem "sprockets-rails"
 gem "stimulus-rails"
+gem 'sass-rails', '>= 6'
 # gem 'hamlit-rails'
 gem "turbo-rails"
 gem 'turbolinks', '~> 5'

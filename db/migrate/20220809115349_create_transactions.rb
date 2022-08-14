@@ -5,7 +5,7 @@ class CreateTransactions < ActiveRecord::Migration[7.0]
       t.string :ticker
       t.string :symbol
       t.string :company_name
-      t.integer :stock_price
+      t.decimal :stock_price
       t.integer :stock_quantity, default: 0
       t.integer :user_id
 

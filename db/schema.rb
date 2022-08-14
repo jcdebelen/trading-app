@@ -17,7 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_14_085252) do
   create_table "pendings", force: :cascade do |t|
     t.string "symbol"
     t.integer "quantity"
-    t.integer "amount"
+    t.decimal "amount"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -28,7 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_14_085252) do
     t.string "ticker"
     t.string "symbol"
     t.string "company_name"
-    t.integer "stock_price"
+    t.decimal "stock_price"
     t.integer "stock_quantity", default: 0
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -51,7 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_14_085252) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.integer "role", default: 0
-    t.integer "balance", default: 0
+    t.decimal "balance", default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "approved", default: false, null: false
