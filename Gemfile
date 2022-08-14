@@ -40,5 +40,6 @@ group :test do
 end
 
 gem "cssbundling-rails"
+gem 'webpacker', '~> 5.4', '>= 5.4.3'
 
 gem "cable_ready", "~> 4.5"
