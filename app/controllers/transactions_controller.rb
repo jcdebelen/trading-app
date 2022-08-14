@@ -14,6 +14,7 @@ class TransactionsController < ApplicationController
 
   def sell
     @transaction = current_user.transactions.find(params[:id])
+    @quote = @client.quote(@transaction.symbol)
   end
 
   def create
@@ -48,17 +49,17 @@ class TransactionsController < ApplicationController
 
   def destroy
     t = params[:transaction]
+    latest_price = (t[:latest_price]).to_i * (t[:stock_quantity]).to_i
     sum = (@transaction.stock_price) * (t[:stock_quantity]).to_i
     @transaction = current_user.transactions.find(params[:id])
     current_user.user_histories.create(status: t[:ticker], symbol: t[:symbol], amount: sum)
     respond_to do |format|
       @transaction.stock_quantity -= (t[:stock_quantity]).to_i
-      current_user.balance += sum
+      current_user.balance += latest_price
       current_user.save
       @transaction.save
-      format.html { redirect_to root_path, notice: "Successfully sell #{t[:stock_quantity]} #{@transaction.symbol} stock +$#{sum}" }
+      format.html { redirect_to root_path, notice: "Successfully sell #{t[:stock_quantity]} #{@transaction.symbol} stock +$#{latest_price}, you earned $#{latest_price - sum}" }
     end
-    
   end
 
   private
