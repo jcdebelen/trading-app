@@ -23,13 +23,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_14_085252) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "stocks", force: :cascade do |t|
-    t.string "sym", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["sym"], name: "index_stocks_on_sym", unique: true
-  end
-
   create_table "transactions", force: :cascade do |t|
     t.string "completed", default: "f"
     t.string "ticker"
