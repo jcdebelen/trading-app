@@ -2,7 +2,8 @@ class StocksController < ApplicationController
   before_action :get_iex
 
   def index
-    search = params[:query] 
+    search = params[:query]
+    @most_active ||= @client.stock_market_list(:mostactive)
     if search.present? && search.match(/[a-zA-Z]/)
       search = search.upcase
       begin
@@ -15,7 +16,6 @@ class StocksController < ApplicationController
         @stock = quote
       end
     end
-    
   end
 
   def get_iex

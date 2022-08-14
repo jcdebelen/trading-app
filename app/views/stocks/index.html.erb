@@ -1,3 +1,4 @@
+<%= link_to 'go back', root_path %>
 <%= form_with url: '/stocks', method: :get, data: {turbo: false} do |form| %>
   <%= form.label :query, "Search for stocks:" %>
   <%= form.text_field :query, placeholder: "search by symbol" %>
@@ -6,6 +7,19 @@
 <% if @stock.present? %>
   Company name: <%= @stock.company_name %><br>
   Symbol: <%= @stock.symbol %><br>
-  Price: $<%= @stock.latest_price %><br>
+  Price: $<%= @stock.latest_price.floor %><br>
   <%= link_to 'buy', transactions_buy_path(SS: @stock.symbol) %>
+<% end %>
+<br>
+<br>
+MOST ACTIVE STOCKS
+<br>
+<br>
+<% @most_active.each do |stock| %>
+  SYMBOL: <%= stock.symbol %><br>
+  Company name: <%= stock.company_name %><br>
+  Price: $<%= stock.latest_price.floor %><br>
+  <%= link_to 'buy', transactions_buy_path(SS: stock.symbol) %>
+  <br>
+  <br>
 <% end %>

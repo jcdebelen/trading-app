@@ -1,9 +1,11 @@
 SELLING [<%= @transaction.symbol %>] STOCKS <br>
-Price: $<%= @transaction.stock_price %> <br>
+Latest Price: $<%= @quote.latest_price.floor %> <br>
+Price on Stock: $<%= @transaction.stock_price %> <br>
 you currently have <%= @transaction.stock_quantity %> <br>
 <%= form_with model: @transaction, method: :delete, data: {turbo: false} do |form| %>
   <%= form.hidden_field :ticker, value: "sell" %>
   <%= form.hidden_field :symbol %>
+  <%= form.hidden_field :latest_price, value: @quote.latest_price %>
   <%= form.number_field :stock_quantity, in: 1..@transaction.stock_quantity %>
   <%= form.submit "sell" %>
 <% end %>
