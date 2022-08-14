@@ -39,6 +39,11 @@ group :test do
   gem 'rubocop-rspec', require: false
 end
 
+<<<<<<< Updated upstream
 gem "tailwindcss-rails", "~> 2.0"
+=======
+gem 'cssbundling-rails', '~> 1.1', '>= 1.1.1'
+gem 'font-awesome-sass'
+>>>>>>> Stashed changes
 
 gem "cable_ready", "~> 4.5"
