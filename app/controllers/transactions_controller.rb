@@ -1,14 +1,14 @@
 class TransactionsController < ApplicationController
   before_action :get_iex
   load_and_authorize_resource
-
+  #SS - Stock Symbol, SID -  Stock ID, TR_ID - Transaction_ID
   def buy
     @quote = @client.quote(params[:SS])
-    stock = current_user.transactions.find_by(stock_id: (params[:SID]).to_i)
+    stock = current_user.transactions.find_by(symbol: (params[:SS]))
     if stock.present?
       @stock = stock
     else
-      @stock_id = params[:SID]
+      @stock_symbol = params[:SS]
     end
   end
 
@@ -27,13 +27,20 @@ class TransactionsController < ApplicationController
         current_user.balance -= sum
         current_user.save
         if @find_duplicate.present?
-          @find_duplicate.status = 'pending'
-          @find_duplicate.stock_quantity += params[:stock_quantity].to_i
-          @find_duplicate.save
-          format.html { redirect_to root_path(TR_ID: @find_duplicate.id), notice: "You've bought #{params[:stock_quantity]} #{params[:symbol]} -$#{sum}"}
+          quantity = params[:stock_quantity].to_i
+          StatusJob.set(wait: 10.seconds).perform_later(@find_duplicate.id, quantity)
+          # TR_ID = Transaction ID, TR:S, Transaction Symbol, TR_A = Transaction Amount, TR_Q = Transaction Quantity
+          format.html { redirect_to root_path(
+            TR_S: @find_duplicate.symbol,
+            TR_Q: params[:stock_quantity],
+            TR_A: sum)}
         else
-          @transaction = Transaction.create(transaction_params)
-          format.html { redirect_to root_path(TR_ID: @transaction.id), notice: "You've bought #{params[:stock_quantity]} #{params[:symbol]} -$#{sum}"}
+          CreateJob.set(wait: 10.seconds).perform_later(transaction_params)
+          format.html { redirect_to root_path(
+            TR_S: params[:symbol],
+            TR_Q: params[:stock_quantity],
+            TR_A: sum
+            ) }
         end
       end
     end
@@ -56,7 +63,7 @@ class TransactionsController < ApplicationController
 
   private
   def transaction_params
-    params.permit(:status, :ticker, :symbol, :company_name, :stock_id, :stock_price, :stock_quantity, :user_id)
+    params.permit(:user_id, :completed, :ticker, :symbol, :company_name, :stock_price, :stock_quantity, :user_id)
   end
 
   def get_iex

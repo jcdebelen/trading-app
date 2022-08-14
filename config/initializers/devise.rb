@@ -36,6 +36,7 @@ Devise.setup do |config|
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
   config.parent_controller = 'Users::DeviseController'
+  config.sign_out_via = :get
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -301,6 +302,7 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(scope: :user).unshift :some_external_strategy
   # end
+  
   config.warden do |manager|
     manager.failure_app = TurboFailureApp
   #   manager.intercept_401 = false

@@ -1,16 +1,25 @@
-<h2>Forgot your password?</h2>
+<div class="absolute w-full h-40 flex flex-col justify-center items-center mt-30">
+  <a href="/users/sign_in" class="absolute italic font-sans text-7xl font-bold font text-center text-orange-500 drop-shadow-xl tracking-tighter">Degen<span class="text-gray-500">Exchange</span></a>
+  <span class="italic mt-20 text-gray-900 z-10 font-bold">To the moon and beyond</span>
+</div>
+<div class="w-full h-screen flex flex-col items-center justify-center bg-slate-200">
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+<h2 class="text-2xl font-bold text-gray-600 self-center mb-6 mt-20">Forgot your password?</h2>
+
+<div class="w-2/3 flex flex-col items-center">
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), method: :post, :html => {:class => "mb-40 flex flex-col items-center w-96"}) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :email, class: "text-base text-gray-600" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-96 bg-white rounded-lg block px-2.5 pb-2.5 pt-4 w-full text-base text-gray-900 rounded-lg border-1 border-gray-400 appearance-none focus:outline-none focus:ring-0 focus:border-sky-500 min-w-24 peer", placeholder: " "  %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+    <%= f.submit "Reset password by email", class: "text-center mt-2 h-10 text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-1.5 mt-2 w-auto" %>
   </div>
+  <%= link_to "< Back to homepage", root_path, method: :delete, class:"text-sm hover:underline mt-24 mb-6 self-end" %>
 <% end %>
+</div>
 
-<%= render "devise/shared/links" %>
+</div>

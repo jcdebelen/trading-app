@@ -1,9 +1,11 @@
-<% @stocks.each do |symbol| %>
-  <% quote = @client.quote(symbol.sym) %>
-  Symbol: <%= symbol.sym %><br>
-  Company name: <%= quote.company_name %><br>
-  $<%= quote.latest_price %><br>
-  <%= link_to 'buy', transactions_buy_path(SS: symbol.sym, SID: symbol.id) %>
-  <br>
-  <br>
+<%= form_with url: '/stocks', method: :get, data: {turbo: false} do |form| %>
+  <%= form.label :query, "Search for stocks:" %>
+  <%= form.text_field :query, placeholder: "search by symbol" %>
+  <%= form.submit "Search" %>
+<% end %>
+<% if @stock.present? %>
+  Company name: <%= @stock.company_name %><br>
+  Symbol: <%= @stock.symbol %><br>
+  Price: $<%= @stock.latest_price %><br>
+  <%= link_to 'buy', transactions_buy_path(SS: @stock.symbol) %>
 <% end %>

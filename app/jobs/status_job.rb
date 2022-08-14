@@ -1,10 +1,12 @@
 class StatusJob < ApplicationJob
   queue_as :default
 
-  def perform(id)
+  def perform(id, quantity=0)
     # Do something later
-    user = Transaction.find(id)
-    user.status = 'completed'
-    user.save
+    t = Transaction.find(id)
+    t.completed = true
+    t.stock_quantity += quantity
+    t.save
   end
+
 end

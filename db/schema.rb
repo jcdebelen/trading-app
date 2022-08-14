@@ -10,15 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_12_080546) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_14_085252) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "stocks", force: :cascade do |t|
-    t.string "sym", null: false
+  create_table "pendings", force: :cascade do |t|
+    t.string "symbol"
+    t.integer "quantity"
+    t.integer "amount"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["sym"], name: "index_stocks_on_sym", unique: true
   end
 
   create_table "stocks", force: :cascade do |t|
@@ -29,11 +31,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_12_080546) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.string "status", default: "pending"
+    t.string "completed", default: "f"
     t.string "ticker"
     t.string "symbol"
     t.string "company_name"
-    t.integer "stock_id"
     t.integer "stock_price"
     t.integer "stock_quantity", default: 0
     t.integer "user_id"
@@ -46,13 +47,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_12_080546) do
     t.string "status"
     t.string "symbol"
     t.string "amount", default: "0"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "user_wallets", force: :cascade do |t|
-    t.integer "withdraw", default: 0
-    t.integer "deposit", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

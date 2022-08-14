@@ -8,14 +8,24 @@ BALANCE: $<%= current_user.balance %><br>
 STOCKS: <%= @transactions.length %>
 <br>
 <br>
+PENDING STOCKS
+<br>
+<% @pending_stocks.each do |stock| %>
+  <br>
+  Status: pending Symbol: <%= stock.symbol %> Quantity: <%= stock.quantity %> Amount: $<%= stock.amount %> DATE: <%=  stock.updated_at.strftime("%B %d, %Y") %>
+  <br>
+<% end %>
+<br>
+<br>
+ALL STOCKS
+<br>
 <% @transactions.each do |transaction| %>
-  Status: <%= transaction.status %><br>
   Symbol: <%= transaction.symbol %><br>
   Company name: <%= transaction.company_name %><br>
   Price: $<%= transaction.stock_price %><br>
   Stock: <%= transaction.stock_quantity %><br>
   <%= link_to "sell", transactions_sell_path(transaction.id) %>
-  <%= link_to 'buy', transactions_buy_path(SS: transaction.symbol, SID: transaction.stock_id) %>
+  <%= link_to 'buy', transactions_buy_path(SS: transaction.symbol) %>
   <br>
   <br>
 <% end %>

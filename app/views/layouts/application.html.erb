@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-<<<<<<< Updated upstream
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
-=======
->>>>>>> Stashed changes
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
-  <body>
-    <p style="color: green"><%= notice %></p>
-    <p style="color: green"><%= alert %></p>
+  <body class="w-full h-screen">
+    <p class="font-bold"><%= notice %></p>
+    <% if alert %>
+      <div class="absolute w-full h-52 flex flex-col justify-end items-center -mb-24">
+        <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-3 rounded-lg" role="alert">
+          <p class="font-bold"><%= notice %></p>
+          <p class=""><%= alert %></p>
+        </div>
+      </div>
+    <% end %>
     <%= yield %>
-
   </body>
 </html>
