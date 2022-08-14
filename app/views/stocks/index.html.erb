@@ -18,7 +18,7 @@ MOST ACTIVE STOCKS
 <% @most_active.each do |stock| %>
   SYMBOL: <%= stock.symbol %><br>
   Company name: <%= stock.company_name %><br>
-  Price: $<%= stock.latest_price.floor %><br>
+  Price: $<%= number_with_precision(stock.latest_price, precision: 2) %><br>
   <%= link_to 'buy', transactions_buy_path(SS: stock.symbol) %>
   <br>
   <br>

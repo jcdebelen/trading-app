@@ -1,5 +1,5 @@
 HELLO [<%= current_user.email.split("@")[0].upcase %>]<br>
-BALANCE: $<%= current_user.balance %><br>
+BALANCE: $<%= number_with_precision(current_user.balance, precision: 2) %><br>
 <%= link_to 'deposit', user_deposit_path %>
 <%= link_to 'withdraw', user_withdraw_path %>
 <br>
@@ -22,7 +22,7 @@ ALL STOCKS
 <% @transactions.each do |transaction| %>
   Symbol: <%= transaction.symbol %><br>
   Company name: <%= transaction.company_name %><br>
-  Price: $<%= transaction.stock_price %><br>
+  Price: $<%= number_with_precision(transaction.stock_price, precision: 2) %><br>
   Stock: <%= transaction.stock_quantity %><br>
   <%= link_to "sell", transactions_sell_path(transaction.id) %>
   <%= link_to 'buy', transactions_buy_path(SS: transaction.symbol) %>

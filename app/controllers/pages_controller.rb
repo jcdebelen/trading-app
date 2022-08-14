@@ -24,4 +24,8 @@ class PagesController < ApplicationController
   def history
     @histories = current_user.user_histories.where.not(symbol: nil).order(created_at: :desc)
   end
+
+  def not_found
+  end
+  
 end

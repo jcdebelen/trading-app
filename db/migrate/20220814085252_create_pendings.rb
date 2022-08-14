@@ -3,7 +3,7 @@ class CreatePendings < ActiveRecord::Migration[7.0]
     create_table :pendings do |t|
       t.string :symbol
       t.integer :quantity
-      t.integer :amount
+      t.decimal :amount
       t.integer :user_id
 
       t.timestamps

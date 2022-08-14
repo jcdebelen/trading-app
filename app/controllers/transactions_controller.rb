@@ -18,7 +18,7 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    sum = (params[:stock_price]).to_i * (params[:stock_quantity]).to_i
+    sum = (params[:stock_price]).to_f * (params[:stock_quantity]).to_i
     respond_to do |format|
       if current_user.balance < sum
         format.html { redirect_to root_path, notice: "Insufficient balance, add more!" }
@@ -49,7 +49,7 @@ class TransactionsController < ApplicationController
 
   def destroy
     t = params[:transaction]
-    latest_price = (t[:latest_price]).to_i * (t[:stock_quantity]).to_i
+    latest_price = (t[:latest_price]).to_f * (t[:stock_quantity]).to_i
     sum = (@transaction.stock_price) * (t[:stock_quantity]).to_i
     @transaction = current_user.transactions.find(params[:id])
     current_user.user_histories.create(status: t[:ticker], symbol: t[:symbol], amount: sum)

@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   resources :user_wallet, only: [:create]
   #user history
   get 'user_history' => 'pages#history'
+  #error 404
+  get '*path' => 'pages#not_found'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

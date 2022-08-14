@@ -3,6 +3,6 @@ WITHDRAW
 BALANCE: $<%= current_user.balance %>
 <br>
 <%= form_with url: '/user_wallet', method: :post, data: {turbo: false} do |form| %>
-  <%= form.number_field :withdraw, in: 1..current_user.balance %>
+  <%= form.number_field :withdraw, in: 1..current_user.balance, step: 0.01 %>
   <%= form.submit 'withdraw' %>
 <% end %>
