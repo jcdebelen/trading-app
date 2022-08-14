@@ -18,3 +18,7 @@
 #   quote = client.quote(stock_symbol)
 #   Stock.create(sym: stock_symbol)
 # end
+
+User.create(email: "admin@email.com", password: "password", password_confirmation: "password", role: 1, approved: true)
+User.create(email: "trader@email.com", password: "password", password_confirmation: "password", approved: true)
+

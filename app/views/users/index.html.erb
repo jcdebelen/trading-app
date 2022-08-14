@@ -1,3 +1,8 @@
+<h1 class="text-2xl">Hello, Admin</h1>
+<h2 class="text-xl">There are currently <%= User.count - 1 %> users in the system</h2>
+<br>
+<%= button_to 'Log out', destroy_user_session_path, method: :delete %>
+<br>
 <%= link_to 'create user', users_admin_new_path%><br>
 NEEDS UPROVAL<br>
 <% if @users_not_approved.length === 0 %>
