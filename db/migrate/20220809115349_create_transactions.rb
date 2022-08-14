@@ -1,7 +1,7 @@
 class CreateTransactions < ActiveRecord::Migration[7.0]
   def change
     create_table :transactions do |t|
-      t.string :status, default: "pending"
+      t.string :completed, default: false
       t.string :ticker
       t.string :symbol
       t.string :company_name

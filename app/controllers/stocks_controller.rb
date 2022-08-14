@@ -1,6 +1,5 @@
 class StocksController < ApplicationController
   before_action :get_iex
-  load_and_authorize_resource
 
   def index
     search = params[:query] 

@@ -1,5 +1,4 @@
 class UserWalletController < ApplicationController
-
   def deposit
   end
 

@@ -1,8 +1,18 @@
-class PagesController < ApplicationController
-
+class PagesController < ApplicationController 
   def home
-    @transactions = current_user.transactions.where("stock_quantity > ?", 0).where(status: "completed")
-    @pending_stocks = current_user.transactions.where(status: "pending")
+    if params[:TR_Q].present?
+      @pending = Pending.create(user_id: current_user.id, symbol: params[:TR_S], quantity: params[:TR_Q], amount: params[:TR_A])
+      @pending.save
+      DeleteJob.set(wait: 10.seconds).perform_later(@pending.id)
+      respond_to do |format|
+        format.html{ redirect_to root_path, notice: "#{params[:TR_Q]} #{params[:TR_S]}, has been added to pending stage"}
+      end
+    end
+    @transactions = current_user.transactions.where("stock_quantity > ?", 0)
+    @pending_stocks = current_user.pendings
+    if params[:TR_S].present?
+      @sum = params[:TR_A]
+    end
   end
 
   def completed

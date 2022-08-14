@@ -6,9 +6,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :stocks, through: :transactions
   has_many :transactions
   has_many :user_histories
+  has_many :pendings
   
   enum role: [:trader, :admin]
   after_initialize :set_default_role if :new_record?

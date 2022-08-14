@@ -12,7 +12,7 @@ PENDING STOCKS
 <br>
 <% @pending_stocks.each do |stock| %>
   <br>
-  Status: <%= stock.status %> Symbol: <%= stock.symbol %> DATE: <%=  stock.updated_at.strftime("%B %d, %Y") %>
+  Status: pending Symbol: <%= stock.symbol %> Quantity: <%= stock.quantity %> Amount: $<%= stock.amount %> DATE: <%=  stock.updated_at.strftime("%B %d, %Y") %>
   <br>
 <% end %>
 <br>

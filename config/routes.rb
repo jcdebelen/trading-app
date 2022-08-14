@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
 
   # get 'stock/:id/buy' => 'stocks#buy_stock', as: 'stock_buy'
-  get 'users/admin' => 'users#admin'
+  get 'admin' => 'users#index', as: 'users_admin'
   get 'stocks' => 'stocks#index'
   resources :users, only: [:index, :show, :update, :destroy, :edit]
   # transactions
