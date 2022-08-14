@@ -1,29 +1,49 @@
-<h2>Sign up</h2>
+<div class="absolute w-full h-40 flex flex-col justify-center items-center mt-30">
+  <a href="/users/sign_in" class="absolute italic font-sans text-7xl font-bold font text-center text-orange-500 drop-shadow-xl tracking-tighter">Degen<span class="text-gray-500">Exchange</span></a>
+  <span class="italic mt-20 text-gray-900 z-10 font-bold">To the moon and beyond</span>
+</div>
+<div class="w-full h-screen flex flex-col items-center justify-center bg-slate-200">
+  <h2 class="text-2xl font-bold text-gray-600 self-center mb-6 mt-20">Registration</h2>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => "w-96 flex flex-col"}) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="field relative">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: " bg-white rounded-lg block px-2.5 pb-2.5 pt-4 w-full text-base text-gray-900 rounded-lg border-1 border-gray-400 appearance-none focus:outline-none focus:ring-0 focus:border-sky-500 min-w-24 peer", placeholder: " "   %>
+      <%= f.label :email, for: "floating_outlined", class:"absolute text-base text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-grat-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4" %><br />
+    </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="field relative">
+      <%= f.password_field :password, autocomplete: "new-password", class: "bg-white rounded-lg block px-2.5 pb-2.5 pt-4 w-full text-base text-gray-900 rounded-lg border-1 border-gray-400 appearance-none focus:outline-none focus:ring-0 focus:border-sky-500 peer", placeholder: " "   %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <%= f.label :password, for: "floating_outlined", class:"mt-4 absolute text-base text-gray-500 duration-300 transform -translate-y-4 scale-75 top-0 z-10 origin-[0] left-2.5 peer-focus:text-grat-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4" %>
+       <p class="invisible text-sm ml-2 mt-1 peer-focus:visible text-red-400">
+      <% if @minimum_password_length %>
+      <em><%= @minimum_password_length %> characters minimum</em>
+      <% end %>
+    </p>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <div class="field relative">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "bg-white rounded-lg block px-2.5 pb-2.5 pt-4 w-full text-base text-gray-900 rounded-lg border-1 border-gray-400 appearance-none focus:outline-none focus:ring-0 focus:border-sky-500 peer", placeholder: " "   %>
+      <%= f.label :password_confirmation, for: "floating_outlined", class:" absolute text-base text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-grat-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4" %><br />
+    </div>
+    
+     <div class="flex items-start self-center">
+        <div class="flex items-center h-5">
+          <input id="newsletter" aria-describedby="newsletter" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300" required="">
+        </div>
+        <div class="ml-3 text-sm self-center">
+          <label for="newsletter" class="text-gray-900">I accept the <a class="font-medium text-primary-600 hover:underline" href="#">Terms and Conditions</a></label>
+        </div>
+    </div>
+    
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="actions self-center">
+      <%= f.submit "Register", class:"text-center self-center items-centermt-2 w-48 h-10 text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-1.5 mr-2 mt-2" %>
+    </div>
+    <%= link_to "< Back to homepage", root_path, method: :delete, class:"text-sm hover:underline mt-24 mb-6 self-end" %>
+  <% end %>
+            
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+</div>
+

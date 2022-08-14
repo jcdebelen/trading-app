@@ -349,7 +349,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   sprockets-rails
   stimulus-rails
-  tailwindcss-rails (~> 2.0)
+  tailwindcss-rails
   turbo-rails
   turbolinks (~> 5)
   tzinfo-data
