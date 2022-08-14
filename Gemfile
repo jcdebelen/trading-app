@@ -39,9 +39,6 @@ group :test do
   gem 'rubocop-rspec', require: false
 end
 
-
-gem 'cssbundling-rails', '~> 1.1', '>= 1.1.1'
-gem 'font-awesome-sass'
-
+gem "tailwindcss-rails"
 
 gem "cable_ready", "~> 4.5"
