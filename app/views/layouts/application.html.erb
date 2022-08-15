@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TradingApp</title>
+    <title>DegenExchange</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <body class="w-full h-screen">
-  <header class="p-3 bg-dark text-white">
+  <body class="vw-100 vh-100" style="background-color: #eee;">
+  <header class="p-3 bg-dark text-white vw-100">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
@@ -17,7 +17,7 @@
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+          <%= link_to "Home", root_path, class:"nav-link px-2 text-secondary" %>
           <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
           <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
           <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
@@ -27,26 +27,31 @@
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
           <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
         </form>
+          <% unless user_signed_in? %>
+          <%= link_to "Sign Up", new_user_registration_path,  class:"btn btn-warning" %>
+          <%end%>
 
         <div class="text-end">
         <% if user_signed_in? %>
           <%= button_to 'Log out', destroy_user_session_path, method: :delete, class:"btn btn-outline-light me-2" %>
         <% else %>
-           <%= link_to "Sign Up", new_user_registration_path,  class:"btn btn-warning" %>
         <%end%>
         </div>
       </div>
     </div>
   </header>
-    <p class="font-bold"><%= notice %></p>
     <% if alert %>
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <p class=""><%= notice %></p>
-        <p class=""><%= alert %></p>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <p class="mb-0 text-center"><%= alert %></p>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     <% end %>
-
+    <% if notice%>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <p class="font-bold text-center mb-0"><%= notice %></p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
