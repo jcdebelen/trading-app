@@ -3,7 +3,7 @@ HISTORY<br>
 <% @histories.each do |history| %>
   Action: <%= history.status %><br>
   Stock Symbol: <%= history.symbol %><br>
-  Amount: $<%= history.amount %><br>
+  Amount: $<%= number_with_precision(history.amount, precision: 2) %><br>
   DATE: <%= history.created_at %><br>
   <br>
 <% end %>
