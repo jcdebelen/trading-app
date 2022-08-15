@@ -23,24 +23,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_14_085252) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "stocks", force: :cascade do |t|
-    t.string "sym", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["sym"], name: "index_stocks_on_sym", unique: true
-  end
-
   create_table "transactions", force: :cascade do |t|
-    t.string "status", default: "pending"
+    t.string "completed", default: "f"
     t.string "ticker"
     t.string "symbol"
     t.string "company_name"
-<<<<<<< Updated upstream
     t.decimal "stock_price"
-=======
-    t.integer "stock_id"
-    t.integer "stock_price"
->>>>>>> Stashed changes
     t.integer "stock_quantity", default: 0
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -51,7 +39,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_14_085252) do
     t.integer "user_id"
     t.string "status"
     t.string "symbol"
-    t.string "amount", default: "0"
+    t.decimal "amount", default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
