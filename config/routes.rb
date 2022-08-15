@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root 'pages#home'
-  resources :charts
-
+  resources :charts, only: [:index]
   # devise
   devise_for :users
   devise_scope :users do

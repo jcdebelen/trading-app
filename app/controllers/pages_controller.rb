@@ -1,4 +1,5 @@
-class PagesController < ApplicationController 
+class PagesController < ApplicationController
+  before_action :redirect_admin
   def home
     if params[:TR_Q].present?
       @pending = Pending.create(user_id: current_user.id, symbol: params[:TR_S], quantity: params[:TR_Q], amount: params[:TR_A])
@@ -27,5 +28,9 @@ class PagesController < ApplicationController
 
   def not_found
   end
-  
+
+  def redirect_admin
+    redirect_to users_admin_path if current_user.admin?
+  end
+
 end
