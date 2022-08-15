@@ -1,11 +1,49 @@
-SELLING [<%= @transaction.symbol %>] STOCKS <br>
-Latest Price: $<%= @quote.latest_price %> <br>
-Price on Stock: $<%= @transaction.stock_price %> <br>
-you currently have <%= @transaction.stock_quantity %> <br>
-<%= form_with model: @transaction, method: :delete, data: {turbo: false} do |form| %>
-  <%= form.hidden_field :ticker, value: "sell" %>
-  <%= form.hidden_field :symbol %>
-  <%= form.hidden_field :latest_price, value: @quote.latest_price %>
-  <%= form.number_field :stock_quantity, in: 1..@transaction.stock_quantity %>
-  <%= form.submit "sell" %>
-<% end %>
+
+<%= javascript_pack_tag 'highcharts', 'data-turbolinks-track': 'reload'%>
+
+<section class="padding-y bg-white shadow-sm">
+  <div class="container">
+    <div class="row">
+      <h4>Sell Stocks</h4>
+      <div class="col-lg-9">
+        <article>
+          <div id="container"></div>
+        </article>
+        <!-- product-info-aside .// -->
+      </div>
+      <!-- col.// -->
+      <aside class="col-lg-3">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <div class="mb-3">
+              <var class="price h5">$<%= @quote.latest_price %></var>
+              <span class="text-muted">/per stock</span>
+            </div>
+            <form>
+
+            </form>
+            <div class="mb-4">
+              <%= form_with model: @transaction, method: :delete, data: {turbo: false} do |form| %>
+                <%= form.hidden_field :ticker, value: "sell" %>
+                <%= form.hidden_field :symbol %>
+                <%= form.hidden_field :latest_price, value: @quote.latest_price %>
+                <%= form.number_field :stock_quantity, in: 1..@transaction.stock_quantity, class:"form-control" %>
+                <%= form.submit "sell", class:"btn btn-danger w-100" %>
+              <% end %>
+            </div>
+            <ul class="list-icon">
+              <li>Symbol: <%= @transaction.symbol %></li>
+              <li>Company: <%= @quote.company_name %></li>
+              <li>Price on Stock: <b>$<%= @transaction.stock_price %></b></li>
+              <li>Quantity: <%= @transaction.stock_quantity %></li>
+            </ul>
+          </div>
+          <!-- card-end.// -->
+        </div>
+        <!-- card.// -->
+      </aside>
+    </div>
+    <!-- row.// -->
+  </div>
+  <!-- container .// -->
+</section>

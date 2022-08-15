@@ -41,5 +41,6 @@ end
 
 gem "cssbundling-rails"
 gem 'webpacker', '~> 5.4', '>= 5.4.3'
+gem "font-awesome-sass", "~> 6.1.1"
 
 gem "cable_ready", "~> 4.5"

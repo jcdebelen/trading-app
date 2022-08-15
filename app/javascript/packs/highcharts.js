@@ -10,12 +10,11 @@ import Highcharts from "highcharts/highstock";
     },
 
     title: {
-      text: "AAPL Stock Price",
+      text: "",
     },
 
     series: [
       {
-        name: "AAPL",
         data: data,
         tooltip: {
           valueDecimals: 2,
