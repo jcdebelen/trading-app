@@ -21,6 +21,8 @@ class UserWalletController < ApplicationController
         current_user.balance += params[:deposit].to_f 
         format.html { redirect_to root_path, notice: "You've successfully deposited $#{params[:deposit]}"}
         current_user.save
+      else
+        format.html { redirect_to root_path, notice: "Must input a value"}
       end
     end
   end

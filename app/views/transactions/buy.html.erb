@@ -1,7 +1,4 @@
-
-
 <%= javascript_pack_tag 'highcharts', 'data-turbolinks-track': 'reload'%>
-
 <section class="padding-y bg-white shadow-sm">
   <div class="container">
     <div class="row">
@@ -21,7 +18,6 @@
               <span class="text-muted">/per stock</span>
             </div>
             <form>
-
             </form>
             <div class="mb-4">
               <% if @stock.present? %>
@@ -35,7 +31,7 @@
               <li>Company: <%= @quote.company_name %></li>
               <% if @stock.present? %>
                 <% if @stock.stock_quantity > 0 %>
-                 <li> Owned STOCKS: <%= @stock.stock_quantity %></li>
+                  <li> Owned STOCKS: <%= @stock.stock_quantity %></li>
                 <% end %>
               <% end %>
             </ul>
