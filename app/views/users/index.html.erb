@@ -1,17 +1,14 @@
 <div class="container d-flex flex-column">
   <h1 class="text-center mt-3 display-3">Welcome, Admininistrator</h1>
   <p class="text-center">There are currently <b><%= User.count - 1 %></b> users in the system</p>
-  <br>
 
-
- 
   <h2 class="mt-3 display-5">Users List</h2>
   <table class="table bg-light">
-  <tr>
-  <th class="col">Email address</th>
-  <th class="col">Approval Status</th>
-  <th class="col">Details</th>
-  </tr>
+    <tr>
+    <th class="col">Email address</th>
+    <th class="col">Approval Status</th>
+    <th class="col">Details</th>
+    </tr>
 
   <% @users_approved.each do |user| %>
     <tr>
@@ -20,21 +17,31 @@
     <td class="col"><%= link_to 'View details', user_path(user.id), class: "text-decoration-none" %></td>
     </tr>
   <% end %>
+    <tr>
+      <td class="col">
+        <%= link_to 'Add User', users_admin_new_path, class:"btn btn-success align-self-center"%>
+      </td> 
+    </tr>
   </table>
-
-  <%= link_to 'Create User', users_admin_new_path, class:"btn btn-success btn-lg align-self-center"%>
 
    <h2 class="mt-4 display-5">Approval List</h2>
   <% if @users_not_approved.length === 0 %>
     <p>Nothing To Approve</p>
   <% else %>
-    <br>
-    <% @users_not_approved.each do |user| %>
-      <%= user.email %>
-      <%= user.approved %>
-      <%= link_to 'show user', user_path(user.id) %>
-      <br>
-    <% end %>
+    <table class="table bg-light">
+      <tr>
+        <th class="col">Email address</th>
+        <th class="col">Approval Status</th>
+        <th class="col">Details</th>
+      </tr>
+      <% @users_not_approved.each do |user| %>
+        <tr>
+          <td class="col"><%= user.email %></td>
+          <td class="col"><%= user.approved %></td>
+          <td class="col"><%= link_to 'View details', user_path(user.id) %></td>
+        </tr>
+      <% end %>
+    </table>
   <% end %>
 </div>
 

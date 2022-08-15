@@ -4,6 +4,11 @@
   <%= form_with model: @user, :html => {:class => "mt-3 w-100 d-flex flex-column align-items-center"}, :url => '/users/admin_create' do |form| %>
 
     <div class="w-100">
+      <%= form.label :email%>
+      <%= form.text_field :email, class:"form-control" %>
+      <%= @user.errors.full_messages[0] %>
+    </div>
+    <div class="w-100">
       <%= form.label :password %>
       <%= form.password_field :password, class:"form-control" %>
       <%= @user.errors.full_messages[1] %>
