@@ -1,11 +1,14 @@
-<%= form_with model: @user do |form| %>
+<div class="container h-75 d-flex flex-column align-items-center">
+  <%= form_with class: "d-flex flex-column justify-content-center w-75", model: @user do |form| %>
   <%= form.label :email %>
   <%= @user.errors.full_messages[0] %>
   <%= form.text_field :email %>
   <%= form.label :approved %>
   <%= form.select :approved, [[true, "true"], [false, "false"]]%>
   <br>
-  <%= form.submit %>
+  <%= form.submit class: "btn btn-success w-25 align-self-center"%>
 <% end %>
-<br>
-<%= link_to 'go back', users_path%>
+<%= link_to '<Back to Dashboard', users_path, class: "mt-5" %><br>
+</div>
+
+

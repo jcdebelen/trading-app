@@ -1,13 +1,13 @@
-<div class="container d-flex justify-content-between">
+<div class="container d-flex justify-content-start">
 
     <div><%= link_to 'Back', root_path, class:"fa fa-chevron-left "%></div>
-    <div>
-    <%= form_with url: '/stocks', method: :get, data: {turbo: false} do |form| %>
-      <%= form.text_field :query, placeholder: "Search stocks by Symbol" %>
+</div>
+<div class="container d-flex justify-content-start my-4">
+    <%= form_with url: '/stocks',class: "d-flex w-100", method: :get, data: {turbo: false} do |form| %>
+      <%= form.text_field :query, placeholder: "Search stocks by Symbol", class: "form-control form-control-dark" %>
       <%= form.submit "Search", class:"btn btn-primary" %>
     <% end %>
     </div>
-
 </div>
 
 <div class="container">

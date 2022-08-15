@@ -17,16 +17,16 @@
       </tr>
       <tr>
           <td>Change Approval Status</td>
-          <td><%= link_to 'edit', edit_user_path(@user.id) %></td>
+          <td><%= link_to 'Edit', edit_user_path(@user.id), class: "btn btn-outline-warning" %></td>
       </tr>
       <tr>
           <td>Delete User</td>
-          <td><%= button_to "delete", user_path, method: :delete%></td>
+          <td><%= button_to "Delete", user_path, method: :delete, class: "btn btn-outline-danger"%></td>
       </tr>
   </table>
 
-  <% if @user_history.present? %>
   <h2 class="display-6">Transaction List</h2>
+  <% if @user_history.present? %>
   <table class="table table-striped">
   <thead>
   <th>Transaction</th>
@@ -51,8 +51,8 @@
     </tbody>
   </table>
   <% else %>
-    No Transactions Yet
+    <p>No Transactions Yet</p>
   <% end %>
-  <%= link_to '<Back to Dashboard', users_path %><br>
+<%= link_to '<Back to Dashboard', users_path, class: "mt-5" %>
 
 </div>

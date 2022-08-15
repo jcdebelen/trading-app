@@ -1,14 +1,14 @@
 <div class="container bg-light">
 <div class="bg-light p-5 rounded text-end">
-    <h3>Hello, <%= current_user.email.split("@")[0] %>!</h3>
-    <p class="lead">BALANCE: <b>$<%= number_with_precision(current_user.balance, precision: 2) %></b></p>
-    <%= link_to 'withdraw', user_withdraw_path, class:"btn btn-success" %>
-    <%= link_to 'deposit', user_deposit_path, class:"btn btn-primary" %>
+    <h3>Hello, <%= current_user.email.split("@")[0].titleize %>!</h3>
+    <p class="lead">Balance: <b>$<%= number_with_precision(current_user.balance, precision: 2) %></b></p>
+    <%= link_to 'Deposit', user_deposit_path, class:"btn btn-success" %>
+    <%= link_to 'Withdraw', user_withdraw_path, class:"btn btn-warning" %>
 
   </div>
 
 
-<%= link_to 'view stocks', stocks_path %>
+<%= link_to 'Trade Stocks', stocks_path, class: "btn btn-primary" %>
 
 
 
@@ -19,7 +19,7 @@
         <th scope="col">Company</th>
         <th scope="col">Amount</th>
         <th scope="col">Stock:</th>
-        <th scope="col">Status</th>
+        <th scope="col">Amount Change</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -43,22 +43,22 @@
 
             <% if transaction.stock_price < @quote = @client.quote(transaction.symbol).latest_price.to_f%>
               <span class="badge bg-danger">
-                -<%= transaction.stock_price - @client.quote(transaction.symbol).latest_price.to_f%>
+                <%= number_with_precision(transaction.stock_price - @client.quote(transaction.symbol).latest_price.to_f, precision: 2)%>
               </span>
             <% elsif transaction.stock_price > @quote = @client.quote(transaction.symbol).latest_price.to_f%>
               <span class="badge bg-success">
-                +<%= transaction.stock_price - @client.quote(transaction.symbol).latest_price.to_f%>
+                +<%= number_with_precision(transaction.stock_price - @client.quote(transaction.symbol).latest_price.to_f, precision: 2)%>
               </span>
             <%else%>
               <span class="badge bg-secondary">
-                <%= transaction.stock_price - @client.quote(transaction.symbol).latest_price.to_f%>
+                <%= number_with_precision(transaction.stock_price - @client.quote(transaction.symbol).latest_price.to_f, precision: 2)%>
               </span>
             <%end%>
 
 
 
           </td>
-          <td><%= link_to 'buy', transactions_buy_path(SS: transaction.symbol), class:"btn btn-success me-1" %><%= link_to "sell", transactions_sell_path(transaction.id), class:"btn btn-danger" %></td>
+          <td><%= link_to 'Buy', transactions_buy_path(SS: transaction.symbol), class:"btn btn-success me-1" %><%= link_to "Sell", transactions_sell_path(transaction.id), class:"btn btn-danger" %></td>
  <% end %>
         </tr>
 
