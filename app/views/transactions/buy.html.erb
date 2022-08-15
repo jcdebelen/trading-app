@@ -1,13 +1,51 @@
-Buying [<%= @quote.symbol %>]<br>
-Price $<%= @quote.latest_price %><br>
-<% if @stock.present? %>
-  <% if @stock.stock_quantity > 0 %>
-    Stock: <%= @stock.stock_quantity %><br>
-  <% end %>
-<% end %>
-<br>
-<% if @stock.present? %>
-  <%= render 'form', quote: @quote %>
-<% else %>
-  <%= render 'form', quote: @quote %>
-<% end %>
+
+
+<%= javascript_pack_tag 'highcharts', 'data-turbolinks-track': 'reload'%>
+
+<section class="padding-y bg-white shadow-sm">
+  <div class="container">
+    <div class="row">
+      <h4>Buy Stocks</h4>
+      <div class="col-lg-9">
+        <article>
+          <div id="container"></div>
+        </article>
+        <!-- product-info-aside .// -->
+      </div>
+      <!-- col.// -->
+      <aside class="col-lg-3">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <div class="mb-3">
+              <var class="price h5">$<%= @quote.latest_price %></var>
+              <span class="text-muted">/per stock</span>
+            </div>
+            <form>
+
+            </form>
+            <div class="mb-4">
+              <% if @stock.present? %>
+                <%= render 'form', quote: @quote %>
+              <% else %>
+                <%= render 'form', quote: @quote %>
+              <% end %>
+            </div>
+            <ul class="list-icon">
+              <li>Symbol: <%= @quote.symbol %></li>
+              <li>Company: <%= @quote.company_name %></li>
+              <% if @stock.present? %>
+                <% if @stock.stock_quantity > 0 %>
+                 <li> Owned STOCKS: <%= @stock.stock_quantity %></li>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+          <!-- card-end.// -->
+        </div>
+        <!-- card.// -->
+      </aside>
+    </div>
+    <!-- row.// -->
+  </div>
+  <!-- container .// -->
+</section>

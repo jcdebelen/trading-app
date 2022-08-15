@@ -126,6 +126,8 @@ GEM
     faraday_middleware (1.2.0)
       faraday (~> 1.0)
     ffi (1.15.5)
+    font-awesome-sass (6.1.2)
+      sassc (~> 2.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     hashdiff (1.0.1)
@@ -341,6 +343,7 @@ DEPENDENCIES
   database_rewinder
   devise
   factory_bot_rails
+  font-awesome-sass (~> 6.1.1)
   iex-ruby-client
   importmap-rails
   jbuilder
