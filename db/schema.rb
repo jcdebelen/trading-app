@@ -39,7 +39,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_14_085252) do
     t.integer "user_id"
     t.string "status"
     t.string "symbol"
-    t.string "amount", default: "0"
+    t.decimal "amount", default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
